@@ -63,6 +63,8 @@ spec:
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
           env:
+            - name: WAIT_DB
+              value: false
             - name: PGHOST
               value: {{ ternary (include "odoo.postgresql.fullname" .) .Values.externalDatabase.host .Values.postgresql.enabled | quote }}
             - name: PGUSER
