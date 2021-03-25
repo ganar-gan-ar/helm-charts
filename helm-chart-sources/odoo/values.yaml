@@ -140,6 +140,10 @@ externalDatabase:
   ##
   password: ""
 
+  ## Database name
+  ##
+  database: prod
+
   ## Database port number
   ##
   port: 5432

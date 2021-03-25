@@ -74,6 +74,10 @@ spec:
                 secretKeyRef:
                   name: {{ include "odoo.databaseSecretName" . }}
                   key: {{ ternary "postgresql-password" "db-password" .Values.postgresql.enabled | quote }}
+            {{- if .Values.externalDatabase.database }}
+            - name: PGDATABASE
+              value: {{ .Values.externalDatabase.database | quote }}
+            {{- end }}
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
