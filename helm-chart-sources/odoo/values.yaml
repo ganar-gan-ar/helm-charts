@@ -13,7 +13,7 @@
 ##
 image:
   registry: docker.io
-  repository: ganar-gan-ar/odoo-02-odoo
+  repository: ganarganar/odoo-02-odoo
   tag: 13.0
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -142,7 +142,7 @@ externalDatabase:
 
   ## Database port number
   ##
-  port: 25060
+  port: 5432
 
 ##
 ## PostgreSQL chart configuration
@@ -233,6 +233,10 @@ ingress:
   ##
   path: /
 
+  ## The Path to Longpolling.
+  ##
+  longpollingPath: /longpolling
+
   ## Ingress annotations done as key:value pairs
   ## For a full list of possible ingress annotations, please see
   ## ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/annotations.md
@@ -299,17 +303,17 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  existingClaim: true
+  # storageClass: "-"
   accessMode: ReadWriteOnce
-  size: 5Gi
+  size: 8Gi
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
 resources:
   requests:
-    memory: 350Mi
-    cpu: 500m
+    memory: 1024Mi
+    cpu: 1000m
 
 ## Configure extra options for liveness and readiness probes
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes)

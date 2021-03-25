@@ -24,4 +24,10 @@ spec:
       {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort)))}}
       nodePort: {{ .Values.service.nodePort }}
       {{- end }}
+    - name: longpolling
+      port: {{ .Values.service.port }}
+      targetPort: longpolling
+      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort)))}}
+      nodePort: {{ .Values.service.nodePort }}
+      {{- end }}
   selector: {{- include "common.labels.matchLabels" . | nindent 4 }}

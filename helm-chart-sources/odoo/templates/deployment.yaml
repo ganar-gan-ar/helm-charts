@@ -152,7 +152,7 @@ spec:
           {{- end }}
           volumeMounts:
             - name: odoo-data
-              mountPath: /bitnami/odoo
+              mountPath: /opt/odoo
             {{- if .Values.extraVolumeMounts }}
             {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
             {{- end }}

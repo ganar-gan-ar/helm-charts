@@ -7,15 +7,15 @@ Odoo Apps can be used as stand-alone applications, but they also integrate seaml
 ## TL;DR
 
 ```console
-$ helm repo add ganar-gan-ar https://github.com/ganar-gan-ar/helm-chart.git
-$ helm install my-release ganar-gan-ar/odoo
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
+$ helm install my-release bitnami/odoo
 ```
 
 ## Introduction
 
 This chart bootstraps a [Odoo](https://github.com/ganar-gan-ar/docker-odoo-02-odoo) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
-Ganar Ganar charts can be used with [Kubeapps](https://kubeapps.com/) for deployment and management of Helm Charts in clusters. This chart has been tested to work with NGINX Ingress, cert-manager, fluentd and Prometheus on top of Rancher.
+This chart has been tested to work with NGINX Ingress, cert-manager, fluentd and Prometheus on top of [Rancher](http://rancher.com/).
 
 ## Prerequisites
 
@@ -62,8 +62,8 @@ The following table lists the configurable parameters of the Odoo chart and thei
 |--------------------------------------|---------------------------------------------------------------------------------------------------|---------------------------------------------------------|
 | `image.registry`                     | Odoo image registry                                                                               | `docker.io`                                             |
 | `image.repository`                   | Odoo Image name                                                                                   | `ganarganar/odoo-02-odoo`                               |
-| `image.tag`                          | Odoo Image tag                                                                                    | `{TAG_NAME}`                                            |
-| `image.pullPolicy`                   | Image pull policy                                                                                 | `Always`                                                |
+| `image.tag`                          | Odoo Image tag                                                                                    | `13.0`                                                  |
+| `image.pullPolicy`                   | Image pull policy                                                                                 | `IfNotPresent`                                          |
 | `image.pullSecrets`                  | Specify docker-registry secret names as an array                                                  | `[]` (does not add image pull secrets to deployed pods) |
 | `hostAliases`                        | Add deployment host aliases                                                                       | `[]`                                                    |
 | `nameOverride`                       | String to partially override odoo.fullname template with a string (will prepend the release name) | `nil`                                                   |
@@ -74,10 +74,10 @@ The following table lists the configurable parameters of the Odoo chart and thei
 | `extraVolumeMounts`                  | Optionally specify extra list of additional volumeMounts for odoo container                       | `[]`                                                    |
 | `extraVolumes`                       | Optionally specify extra list of additional volumes for odoo container                            | `[]`                                                    |
 | `persistence.enabled`                | Enable persistence using PVC                                                                      | `true`                                                  |
-| `persistence.existingClaim`          | Enable persistence using an existing PVC                                                          | `true`                                                  |
+| `persistence.existingClaim`          | Enable persistence using an existing PVC                                                          | `nil`                                                   |
 | `persistence.storageClass`           | PVC Storage Class                                                                                 | `nil` (uses alpha storage class annotation)             |
 | `persistence.accessMode`             | PVC Access Mode                                                                                   | `ReadWriteOnce`                                         |
-| `persistence.size`                   | PVC Storage Request                                                                               | `5Gi`                                                   |
+| `persistence.size`                   | PVC Storage Request                                                                               | `8Gi`                                                   |
 | `podAffinityPreset`                  | Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`               | `""`                                                    |
 | `podAntiAffinityPreset`              | Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`          | `soft`                                                  |
 | `nodeAffinityPreset.type`            | Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard`         | `""`                                                    |
@@ -115,7 +115,7 @@ The following table lists the configurable parameters of the Odoo chart and thei
 | `smtpPassword`                       | SMTP password                                                      | `nil`                                          |
 | `smtpProtocol`                       | SMTP protocol [`ssl`, `tls`]                                       | `nil`                                          |
 | `existingSecret`                     | Name of a secret with the application password                     | `nil`                                          |
-| `resources`                          | CPU/Memory resource requests/limits                                | Memory: `350Mi`, CPU: `500m`                   |
+| `resources`                          | CPU/Memory resource requests/limits                                | Memory: `1024Mi`, CPU: `1000m`                 |
 | `livenessProbe.enabled`              | Enable/disable the liveness probe                                  | `true`                                         |
 | `livenessProbe.initialDelaySeconds`  | Delay before liveness probe is initiated                           | 300                                            |
 | `livenessProbe.periodSeconds`        | How often to perform the probe                                     | 30                                             |
@@ -141,9 +141,10 @@ The following table lists the configurable parameters of the Odoo chart and thei
 | Parameter                        | Description                                                   | Default                        |
 |----------------------------------|---------------------------------------------------------------|--------------------------------|
 | `ingress.enabled`                | Enable ingress controller resource                            | `true`                         |
-| `ingress.certManager`            | Add annotations for cert-manager                              | `true `                        |
+| `ingress.certManager`            | Add annotations for cert-manager                              | `true`                         |
 | `ingress.hostname`               | Default host for the ingress resource                         | `demo.ganargan.ar`             |
 | `ingress.path`                   | Default path for the ingress resource                         | `/`                            |
+| `ingress.longpollingPath`        | Default path for the longpolling ingress resource             | `/longpolling`                 |
 | `ingress.tls`                    | Create TLS Secret                                             | `true`                         |
 | `ingress.annotations`            | Ingress annotations                                           | `[]` (evaluated as a template) |
 | `ingress.extraHosts[0].name`     | Additional hostnames to be covered                            | `nil`                          |
@@ -163,27 +164,27 @@ The following table lists the configurable parameters of the Odoo chart and thei
 |---------------------------------------|-------------------------------------------|---------------------------------------------|
 | `postgresql.enabled`                  | Deploy PostgreSQL container(s)            | `false`                                     |
 | `postgresql.postgresqlPassword`       | PostgreSQL password                       | `nil`                                       |
-| `postgresql.persistence.enabled`      | Enable PostgreSQL persistence using PVC   | `false`                                     |
+| `postgresql.persistence.enabled`      | Enable PostgreSQL persistence using PVC   | `true`                                      |
 | `postgresql.persistence.storageClass` | PVC Storage Class for PostgreSQL volume   | `nil` (uses alpha storage class annotation) |
 | `postgresql.persistence.accessMode`   | PVC Access Mode for PostgreSQL volume     | `ReadWriteOnce`                             |
 | `postgresql.persistence.size`         | PVC Storage Request for PostgreSQL volume | `8Gi`                                       |
-| `externalDatabase.host`               | Host of the external database             | `private[...]db.ondigitalocean.com`         |
+| `externalDatabase.host`               | Host of the external database             | `localhost`                                 |
 | `externalDatabase.user`               | Existing username in the external db      | `odoo`                                      |
 | `externalDatabase.password`           | Password for the above username           | `nil`                                       |
-| `externalDatabase.database`           | Name of the existing database             | `defaultdb`                                 |
-| `externalDatabase.port`               | Database port number                      | `25060`                                     |
+| `externalDatabase.database`           | Name of the existing database             | `prod`                                      |
+| `externalDatabase.port`               | Database port number                      | `5432`                                      |
 
-The above parameters map to the env variables defined in [ganarganar/odoo-01-base](https://github.com/ganar-gan-ar/docker-odoo-01-base). For more information please refer to the [ganarganar/odoo-01-base](https://github.com/ganar-gan-ar/docker-odoo-01-base) image documentation.
+The above parameters map to the env variables defined in [ganarganar/odoo-01-base](https://github.com/ganar-gan-ar/docker-odoo-01-base/). For more information please refer to the [ganarganar/odoo-01-base](https://github.com/ganar-gan-ar/docker-odoo-01-base/) image documentation.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
 $ helm install my-release \
-  --set odooPassword=password,externalDatabase.password=secretpassword \
+  --set odooPassword=password,postgresql.postgresPassword=secretpassword \
     ganar-gan-ar/odoo
 ```
 
-The above command sets the Odoo administrator account password to `password` and the external PostgreSQL database `odoo` user password to `secretpassword`.
+The above command sets the Odoo administrator account password to `password` and the PostgreSQL `postgres` user password to `secretpassword`.
 
 > NOTE: Once this chart is deployed, it is not possible to change the application's access credentials, such as usernames or passwords, using Helm. To change these application credentials after deployment, delete any persistent volumes (PVs) used by the chart and re-deploy it, or use the application's built-in administrative tools if available.
 
@@ -201,15 +202,15 @@ $ helm install my-release -f values.yaml ganar-gan-ar/odoo
 
 It is strongly recommended to use immutable tags in a production environment. This ensures your deployment does not change automatically if the same tag is updated with a different image.
 
-Ganar Ganar will release a new chart updating its containers if a new version of the main container, significant changes, or critical vulnerabilities exist.
+Bitnami will release a new chart updating its containers if a new version of the main container, significant changes, or critical vulnerabilities exist.
 
 ### Change Odoo version
 
-To modify the Odoo version used in this chart you can specify a [valid image tag](https://hub.docker.com/repository/docker/ganarganar/odoo-02-odoo/tags/) using the `image.tag` parameter. For example, `image.tag=X.Y.Z`. This approach is also applicable to other images like exporters.
+To modify the Odoo version used in this chart you can specify a [valid image tag](https://hub.docker.com/repository/docker/ganarganar/odoo-02-odoo/tags) using the `image.tag` parameter. For example, `image.tag=X.Y.Z`. This approach is also applicable to other images like exporters.
 
 ### Using an external database
 
-Mostly you may want to have Odoo connect to an external database rather than installing one inside your cluster, e.g. to use a managed database service, or use a single database server for all your applications. To do this, the chart allows you to specify credentials for an external database under the [`externalDatabase` parameter](#parameters). You should also disable the PostgreSQL installation with the `postgresql.enabled` option. For example using the following parameters:
+Sometimes you may want to have Odoo connect to an external database rather than installing one inside your cluster, e.g. to use a managed database service, or use a single database server for all your applications. To do this, the chart allows you to specify credentials for an external database under the [`externalDatabase` parameter](#parameters). You should also disable the PostgreSQL installation with the `postgresql.enabled` option. For example using the following parameters:
 
 ```console
 postgresql.enabled=false
@@ -245,11 +246,11 @@ As an alternative, you can use of the preset configurations for pod affinity, po
 
 ## Persistence
 
-The [Ganar Ganar Odoo](https://github.com/ganar-gan-ar/docker-odoo-01-base) image stores the Odoo data and configurations at the `/odoo` path of the container.
+The [Ganar Ganar Odoo](https://github.com/ganar-gan-ar/docker-odoo-01-base) image stores the Odoo data and configurations at the `/opt/odoo` path of the container.
 
 Persistent Volume Claims are used to keep the data across deployments. This is known to work in GCE, AWS, and minikube.
 See the [Parameters](#parameters) section to configure the PVC or to disable persistence.
 
 ## Troubleshooting
 
-TO-DO
+TO-DO.
