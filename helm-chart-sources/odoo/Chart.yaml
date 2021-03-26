@@ -27,4 +27,4 @@ name: odoo
 sources:
   - https://github.com/ganar-gan-ar/docker-odoo-02-odoo
   - https://www.odoo.com/
-version: 0.3.0
+version: 0.3.1
