@@ -108,6 +108,13 @@ The following table lists the configurable parameters of the Odoo chart and thei
 | Parameter                            | Description                                                        | Default                                        |
 |--------------------------------------|--------------------------------------------------------------------|------------------------------------------------|
 | `odooPassword`                       | Master password                                                    | _random 16 character long alphanumeric string_ |
+| `workers`                            | Number of workers                                                  | 2                                              |
+| `maxCronThreads`                     | Number of cron workers                                             | 1                                              |
+| `dbMaxConn`                          | Max number of db conns. Change it after change nº of workers       | 6                                              |
+| `limitMemoryHard`                    | Master password                                                    | 1395864371                                     |
+| `limitMemorySoft`                    | Master password                                                    | 530242876                                      |
+| `dbFilter`                           | Master password                                                    | ^%d$                                           |
+| `listDb`                             | Wheter list databases or not                                       | `false`                                        |
 | `withoutDemo`                        | Disable Odoo modules demo data ('', 'all' or comma-separated list) | `all`                                          |
 | `smtpHost`                           | SMTP host                                                          | `nil`                                          |
 | `smtpPort`                           | SMTP port                                                          | `nil`                                          |
@@ -115,7 +122,7 @@ The following table lists the configurable parameters of the Odoo chart and thei
 | `smtpPassword`                       | SMTP password                                                      | `nil`                                          |
 | `smtpProtocol`                       | SMTP protocol [`ssl`, `tls`]                                       | `nil`                                          |
 | `existingSecret`                     | Name of a secret with the application password                     | `nil`                                          |
-| `resources`                          | CPU/Memory resource requests/limits                                | Memory: `1024Mi`, CPU: `1000m`                 |
+| `resources`                          | CPU/Memory resource requests/limits                                | Memory: `512Mi`, CPU: `500m`                   |
 | `livenessProbe.enabled`              | Enable/disable the liveness probe                                  | `true`                                         |
 | `livenessProbe.initialDelaySeconds`  | Delay before liveness probe is initiated                           | 300                                            |
 | `livenessProbe.periodSeconds`        | How often to perform the probe                                     | 30                                             |

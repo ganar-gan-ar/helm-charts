@@ -109,6 +109,34 @@ extraVolumeMounts: []
 ##
 # odooPassword:
 
+## Number of HTTP workers
+##
+workers: 2
+
+## Number of cron workers
+##
+maxCronThreads: 1
+
+## Max number of connections with the database.
+## ref: https://odoo-development.readthedocs.io/en/latest/admin/db_maxconn.html
+dbMaxConn: 6
+
+## If reached, this limit will kill the worker immediatly.
+##
+limitMemoryHard: 1395864371
+
+## If reached, this limit will kill the worker after finishing the current request.
+##
+limitMemorySoft: 530242876
+
+## The filter that will be applied to the database list.
+##
+dbFilter: ^%d$
+
+## Whether list databases or not (also manager is involved in this value).
+##
+listDb: false
+
 ## Odoo modules disable demo data
 ## ref: https://github.com/bitnami/bitnami-docker-odoo#configuration
 ##

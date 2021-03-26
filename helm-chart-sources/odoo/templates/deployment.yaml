@@ -78,6 +78,34 @@ spec:
             - name: PGDATABASE
               value: {{ .Values.externalDatabase.database | quote }}
             {{- end }}
+            {{- if .Values.workers }}
+            - name: WORKERS
+              value: {{ .Values.workers | quote }}
+            {{- end }}
+            {{- if .Values.maxCronThreads }}
+            - name: MAX_CRON_THREADS
+              value: {{ .Values.maxCronThreads | quote }}
+            {{- end }}
+            {{- if .Values.dbMaxConn }}
+            - name: DB_MAXCONN
+              value: {{ .Values.dbMaxConn | quote }}
+            {{- end }}
+            {{- if .Values.limitMemoryHard }}
+            - name: LIMIT_MEMORY_HARD
+              value: {{ .Values.limitMemoryHard | quote }}
+            {{- end }}
+            {{- if .Values.limitMemorySoft }}
+            - name: LIMIT_MEMORY_SOFT
+              value: {{ .Values.limitMemorySoft | quote }}
+            {{- end }}
+            {{- if .Values.dbFilter }}
+            - name: DB_FILTER
+              value: {{ .Values.dbFilter | quote }}
+            {{- end }}
+            {{- if .Values.listDb }}
+            - name: LIST_DB
+              value: {{ .Values.listDb | quote }}
+            {{- end }} 
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
