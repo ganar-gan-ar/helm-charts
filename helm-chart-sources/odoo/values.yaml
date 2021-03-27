@@ -119,15 +119,15 @@ maxCronThreads: 1
 
 ## Max number of connections with the database.
 ## ref: https://odoo-development.readthedocs.io/en/latest/admin/db_maxconn.html
-dbMaxConn: 6
+dbMaxConn: 7
 
 ## If reached, this limit will kill the worker immediatly.
 ##
-limitMemoryHard: 1395864371
+limitMemoryHard: '1395864371'
 
 ## If reached, this limit will kill the worker after finishing the current request.
 ##
-limitMemorySoft: 530242876
+limitMemorySoft: '671088640'
 
 ## The filter that will be applied to the database list.
 ##
@@ -135,7 +135,7 @@ dbFilter: ^%d$
 
 ## Whether list databases or not (also manager is involved in this value).
 ##
-listDb: false
+listDb: true
 
 ## Odoo modules disable demo data
 ## ref: https://github.com/bitnami/bitnami-docker-odoo#configuration
@@ -250,7 +250,7 @@ ingress:
 
   ## Set this to true in order to add the corresponding annotations for cert-manager
   ##
-  certManager: true
+  certManager: false
 
   ## Ingress Path type
   ##
@@ -279,7 +279,7 @@ ingress:
   ##
   ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
   ##
-  annotations: {}
+  annotations: {rancher.io/globalDNS.hostname: 'demo.ganargan.ar', cert-manager.io/issuer: 'letsencrypt-prod'}
 
   ## Enable TLS configuration for the hostname defined at ingress.hostname parameter
   ## TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
