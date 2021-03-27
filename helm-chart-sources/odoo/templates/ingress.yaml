@@ -35,7 +35,7 @@ spec:
             {{- if eq "true" (include "common.ingress.supportsPathType" .) }}
             pathType: {{ .Values.ingress.pathType }}
             {{- end }}
-            backend: {{- include "common.ingress.backend" (dict "serviceName" (include "odoo.fullname" .) "servicePort" "8072" "context" $)  | nindent 14 }}
+            backend: {{- include "common.ingress.backend" (dict "serviceName" (include "odoo.fullname" .) "servicePort" "longpolling" "context" $)  | nindent 14 }}
     {{- end }}
     {{- range .Values.ingress.extraHosts }}
     - host: {{ .name | quote }}
@@ -50,7 +50,7 @@ spec:
             {{- if eq "true" (include "common.ingress.supportsPathType" $) }}
             pathType: {{ default "ImplementationSpecific" .pathType }}
             {{- end }}
-            backend: {{- include "common.ingress.backend" (dict "serviceName" (include "odoo.fullname" $) "servicePort" "8072" "context" $) | nindent 14 }}
+            backend: {{- include "common.ingress.backend" (dict "serviceName" (include "odoo.fullname" $) "servicePort" "longpolling" "context" $) | nindent 14 }}
     {{- end }}
   {{- if or .Values.ingress.tls .Values.ingress.extraTls }}
   tls:
