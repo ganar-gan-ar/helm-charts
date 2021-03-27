@@ -31,6 +31,8 @@ spec:
             pathType: {{ .Values.ingress.pathType }}
             {{- end }}
             backend: {{- include "common.ingress.backend" (dict "serviceName" (include "odoo.fullname" .) "servicePort" "http" "context" $)  | nindent 14 }}
+      longpolling:
+        paths:
           - path: {{ .Values.ingress.longpollingPath }}
             {{- if eq "true" (include "common.ingress.supportsPathType" .) }}
             pathType: {{ .Values.ingress.pathType }}
@@ -46,6 +48,8 @@ spec:
             pathType: {{ default "ImplementationSpecific" .pathType }}
             {{- end }}
             backend: {{- include "common.ingress.backend" (dict "serviceName" (include "odoo.fullname" $) "servicePort" "http" "context" $) | nindent 14 }}
+      longpolling:
+        paths:
           - path: {{ .Values.ingress.longpollingPath }}
             {{- if eq "true" (include "common.ingress.supportsPathType" .) }}
             pathType: {{ default "ImplementationSpecific" .pathType }}
