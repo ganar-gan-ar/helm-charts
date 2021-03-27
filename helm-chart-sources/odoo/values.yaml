@@ -226,6 +226,10 @@ service:
   # loadBalancerIP:
   # HTTP Port
   port: 80
+  
+  # Longpolling Port
+  longpollingPort: 8072
+
   ## Use nodePort to requets some specific port when using NodePort
   ##
   nodePort: ""

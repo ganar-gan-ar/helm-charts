@@ -151,7 +151,7 @@ spec:
           ports:
             - name: http
               containerPort: 8069
-            - name: longpolling
+            - name: 8072
               containerPort: 8072
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
