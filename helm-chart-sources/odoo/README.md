@@ -246,7 +246,7 @@ As an alternative, you can use of the preset configurations for pod affinity, po
 
 ## Persistence
 
-The [Ganar Ganar Odoo](https://github.com/ganar-gan-ar/docker-odoo-01-base) image stores the Odoo data and configurations at the `/opt/odoo` path of the container.
+The [Ganar Ganar Odoo](https://github.com/ganar-gan-ar/docker-odoo-01-base) image stores the Odoo data and configurations at the `/var/lib/odoo` path of the container.
 
 Persistent Volume Claims are used to keep the data across deployments. This is known to work in GCE, AWS, and minikube.
 See the [Parameters](#parameters) section to configure the PVC or to disable persistence.
