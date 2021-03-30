@@ -129,6 +129,15 @@ limitMemoryHard: '1395864371'
 ##
 limitMemorySoft: '671088640'
 
+
+## Worker limit time CPU
+##
+limitTimeCpu: '300'
+
+## Worker limit time real
+##
+limitTimeReal: '600'
+
 ## The filter that will be applied to the database list.
 ##
 dbFilter: ^%d$

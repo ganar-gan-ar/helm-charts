@@ -98,6 +98,14 @@ spec:
             - name: LIMIT_MEMORY_SOFT
               value: {{ .Values.limitMemorySoft | quote }}
             {{- end }}
+            {{- if .Values.limitTimeCpu }}
+            - name: LIMIT_TIME_CPU
+              value: {{ .Values.limitTimeCpu | quote }}
+            {{- end }}
+            {{- if .Values.limitTimeReal }}
+            - name: LIMIT_TIME_REAL
+              value: {{ .Values.limitTimeReal | quote }}
+            {{- end }}
             {{- if .Values.dbFilter }}
             - name: DB_FILTER
               value: {{ .Values.dbFilter | quote }}
