@@ -288,7 +288,7 @@ ingress:
   ##
   ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
   ##
-  annotations: {rancher.io/globalDNS.hostname: 'demo.ganargan.ar', cert-manager.io/issuer: 'letsencrypt-prod'}
+  annotations: {cert-manager.io/issuer: 'letsencrypt-prod'}
 
   ## Enable TLS configuration for the hostname defined at ingress.hostname parameter
   ## TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
