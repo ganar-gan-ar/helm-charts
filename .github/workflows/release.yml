@@ -24,7 +24,7 @@ jobs:
         with:
           version: v3.4.0
 
-      - name Add Helm repos
+      - name: Add Helm repos
         run: |
           helm repo add ganarganar https://ganarganar.github.io/helm-charts/
 
