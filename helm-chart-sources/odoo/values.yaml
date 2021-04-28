@@ -12,14 +12,14 @@
 ## ref: https://hub.docker.com/r/bitnami/odoo/tags/
 ##
 image:
-  registry: docker.io
-  repository: ganarganar/odoo-02-odoo
-  tag: '13.0'
+  registry: 'docker.io'
+  repository: 'ganarganar/odoo-02-odoo'
+  tag: '13.0-21-04-27-2'
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
-  pullPolicy: IfNotPresent
+  pullPolicy: 'IfNotPresent'
   ## Optionally specify an array of imagePullSecrets.
   ## Secrets must be manually created in the namespace.
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
@@ -259,7 +259,7 @@ ingress:
 
   ## Set this to true in order to add the corresponding annotations for cert-manager
   ##
-  certManager: false
+  certManager: true
 
   ## Ingress Path type
   ##
@@ -288,7 +288,8 @@ ingress:
   ##
   ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
   ##
-  annotations: {cert-manager.io/issuer: 'letsencrypt-prod'}
+  annotations:
+    cert-manager.io/issuer: 'letsencrypt-prod'
 
   ## Enable TLS configuration for the hostname defined at ingress.hostname parameter
   ## TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
@@ -350,7 +351,7 @@ persistence:
   ##
   # storageClass: "-"
   accessMode: ReadWriteOnce
-  size: 10Gi
+  size: 3Gi
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
@@ -359,7 +360,10 @@ resources:
   requests:
     memory: 512Mi
     cpu: 500m
-
+  limits:
+    memory: 1024Mi
+    cpu: 1000m
+  
 ## Configure extra options for liveness and readiness probes
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes)
 ##
