@@ -28,6 +28,40 @@ entries:
     urls:
     - https://github.com/ganarganar/helm-charts/releases/download/common-1.4.3/common-1.4.3.tgz
     version: 1.4.3
+  odoo:
+  - annotations:
+      category: CRM
+    apiVersion: v2
+    appVersion: 13.0.20210325
+    created: "2021-04-28T23:21:31.751439595Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://ganarganar.github.io/helm-charts/
+      version: 10.x.x
+    - name: common
+      repository: https://ganarganar.github.io/helm-charts/
+      version: 1.x.x
+    description: A suite of web based open source business apps.
+    digest: 461eadc1d34b4158c7177bc60847e043c5d4aedd758df56c1c2fe147397b78ae
+    home: https://github.com/ganar-gan-ar/helm-chart/tree/master/helm-chart-sources/odoo
+    icon: https://bitnami.com/assets/stacks/odoo/img/odoo-stack-220x234.png
+    keywords:
+    - odoo
+    - crm
+    - www
+    - http
+    - web
+    maintainers:
+    - email: lsoto@ganargan.ar
+      name: Ganar Ganar
+    name: odoo
+    sources:
+    - https://github.com/ganar-gan-ar/docker-odoo-02-odoo
+    - https://www.odoo.com/
+    urls:
+    - https://github.com/ganarganar/helm-charts/releases/download/odoo-0.3.6/odoo-0.3.6.tgz
+    version: 0.3.6
   postgresql:
   - annotations:
       category: Database
@@ -62,4 +96,4 @@ entries:
     urls:
     - https://github.com/ganarganar/helm-charts/releases/download/postgresql-10.3.18/postgresql-10.3.18.tgz
     version: 10.3.18
-generated: "2021-04-28T22:57:18.075313871Z"
+generated: "2021-04-28T23:21:31.751447295Z"
