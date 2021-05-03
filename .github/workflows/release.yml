@@ -27,6 +27,7 @@ jobs:
       - name: Add Helm repos
         run: |
           helm repo add ganarganar https://ganarganar.github.io/helm-charts/
+          helm repo add helm-stable https://ganarganar.github.io/helm-charts/
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.0
