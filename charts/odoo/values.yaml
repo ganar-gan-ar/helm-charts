@@ -282,6 +282,11 @@ ingress:
   ##
   longpollingPath: /longpolling
 
+  ## Whether use a custom TLS certificate or not.
+  ## In our case we don't use it, because we use a default wildcard certificate.
+  ## This will enable the creation of a value for the SecretName key.
+  customTlsCert: false
+
   ## Ingress annotations done as key:value pairs
   ## For a full list of possible ingress annotations, please see
   ## ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/annotations.md
@@ -289,10 +294,11 @@ ingress:
   ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
   ##
   annotations:
-    cert-manager.io/issuer: 'letsencrypt-prod'
+    cert-manager.io/issuer: ""
 
   ## Enable TLS configuration for the hostname defined at ingress.hostname parameter
-  ## TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
+  ## First, if customTlsCert is set to false a default wildcard certificate will be used.
+  ## If customTlsCert is set to true, TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
   ## You can use the ingress.secrets parameter to create this TLS secret or relay on cert-manager to create it
   ##
   tls: true
