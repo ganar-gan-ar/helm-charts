@@ -294,7 +294,7 @@ ingress:
   ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
   ##
   annotations:
-    cert-manager.io/issuer: ""
+    cert-manager.io/cluster-issuer: "http01-production-letsencrypt"
 
   ## Enable TLS configuration for the hostname defined at ingress.hostname parameter
   ## First, if customTlsCert is set to false a default wildcard certificate will be used.
