@@ -337,6 +337,39 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.11.0
+    created: "2021-05-20T17:32:09.851344734Z"
+    dependencies:
+    - name: common
+      repository: https://ganarganar.github.io/helm-charts/
+      version: 1.x.x
+    description: Chart for PostgreSQL, an object-relational database management system
+      (ORDBMS) with an emphasis on extensibility and on standards-compliance.
+    digest: 29b14c0bc72f2f5e63c4f684cfa2e2f8a7e38050090fd83d97e328a33a816392
+    home: https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-220x234.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/bitnami-docker-postgresql
+    - https://www.postgresql.org/
+    urls:
+    - https://github.com/ganarganar/helm-charts/releases/download/postgresql-10.3.19/postgresql-10.3.19.tgz
+    version: 10.3.19
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 11.11.0
     created: "2021-04-28T22:57:18.075300571Z"
     dependencies:
     - name: common
@@ -366,4 +399,4 @@ entries:
     urls:
     - https://github.com/ganarganar/helm-charts/releases/download/postgresql-10.3.18/postgresql-10.3.18.tgz
     version: 10.3.18
-generated: "2021-05-20T16:17:03.285687388Z"
+generated: "2021-05-20T17:32:09.851373836Z"
